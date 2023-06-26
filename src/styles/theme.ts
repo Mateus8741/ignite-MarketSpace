@@ -3,11 +3,12 @@ import { extendTheme } from 'native-base'
 export const theme = extendTheme({
   colors: {
     blue: {
-      light: '#647AC7',
-      default: '#364D9D'
+      700: '#E0E1EB',
+      500: '#647AC7',
+      300: '#364D9D'
     },
     red: {
-      light: '#EE7979'
+      300: '#EE7979'
     },
     gray: {
       700: '#F7F7F8',
@@ -21,8 +22,8 @@ export const theme = extendTheme({
     white: '#FFFFFF'
   },
   fonts: {
-    heading: 'Roboto_700Bold',
-    body: 'Roboto_400Regular'
+    heading: 'Karla_700Bold',
+    body: 'Karla_400Regular'
   },
   fontSizes: {
     xs: 12,
