@@ -9,7 +9,33 @@ import {
 type ButtonProps = IButtonProps & {
   children: ReactNode
   icon?: ReactNode
-  variant?: 'default' | 'secondary'
+  variant?: 'default' | 'primary' | 'secondary'
+}
+
+type Modifiers = {
+  [key: string]: {
+    hover: string
+    color: string
+    background: string
+  }
+}
+
+const modifiers: Modifiers = {
+  default: {
+    background: 'gray.500',
+    hover: 'gray.400',
+    color: 'gray.200'
+  },
+  primary: {
+    background: 'blue.500',
+    hover: 'blue.300',
+    color: 'white'
+  },
+  secondary: {
+    background: 'gray.100',
+    hover: 'gray.200',
+    color: 'white'
+  }
 }
 
 export function Button({
@@ -18,13 +44,15 @@ export function Button({
   variant = 'default',
   ...rest
 }: ButtonProps) {
+  const modifier = modifiers[variant]
+
   return (
     <ButtonNativeBase
       width="full"
       height={14}
       rounded="sm"
-      backgroundColor={variant === 'secondary' ? 'gray.300' : 'blue.light'}
-      _pressed={{ bg: variant === 'secondary' ? 'gray.200' : 'blue.default' }}
+      backgroundColor={modifier.background}
+      _pressed={{ bg: modifier.hover }}
       {...rest}
     >
       <HStack alignItems="center">
@@ -32,7 +60,7 @@ export function Button({
 
         <Text
           marginLeft={icon ? 2 : 0}
-          color={variant === 'secondary' ? 'gray.600' : 'white'}
+          color={modifier.color}
           fontFamily="heading"
           fontSize="sm"
         >
