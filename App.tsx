@@ -2,18 +2,18 @@ import { StatusBar } from 'react-native'
 import { NativeBaseProvider } from 'native-base'
 
 import {
-  Roboto_400Regular,
-  Roboto_700Bold,
+  Karla_400Regular,
+  Karla_700Bold,
   useFonts
-} from '@expo-google-fonts/roboto'
+} from '@expo-google-fonts/karla'
 
 import { App } from './src/App'
 import { theme } from './src/styles/theme'
 
 export default function Index() {
   const [fontsLoaded] = useFonts({
-    Roboto_400Regular,
-    Roboto_700Bold
+    Karla_400Regular,
+    Karla_700Bold
   })
 
   if (!fontsLoaded) {

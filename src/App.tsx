@@ -1,5 +1,6 @@
 import { View, LayoutChangeEvent } from 'react-native'
 
+import { AppProvider } from './contexts'
 import { Routes } from './routes'
 
 type AppProps = {
@@ -8,8 +9,10 @@ type AppProps = {
 
 export function App({ onLayout }: AppProps) {
   return (
-    <View style={{ flex: 1 }} onLayout={onLayout}>
-      <Routes />
-    </View>
+    <AppProvider>
+      <View style={{ flex: 1 }} onLayout={onLayout}>
+        <Routes />
+      </View>
+    </AppProvider>
   )
 }

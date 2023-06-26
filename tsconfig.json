@@ -5,11 +5,13 @@
     "baseUrl": "./",
     "paths": {
       "@/components/*": ["./src/components/*"],
+      "@/contexts/*": ["./src/contexts/*"],
       "@/screens/*": ["./src/screens/*"],
       "@/storage/*": ["./src/storage/*"],
       "@/assets/*": ["./src/assets/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/utils/*": ["./src/utils/*"],
+      "@/lib/*": ["./src/lib/*"]
     }
   }
 }

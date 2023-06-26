@@ -8,6 +8,7 @@ import HomeSvg from '@/assets/icons/home.svg'
 import SignOutSvg from '@/assets/icons/getout.svg'
 
 import { Home } from '@/screens/Home'
+import { SignOut } from '@/screens/SignOut'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -59,7 +60,7 @@ function HomeTabs() {
       />
       <Tab.Screen
         name="signout"
-        component={Home}
+        component={SignOut}
         options={{
           tabBarIcon: ({ color }) => (
             <SignOutSvg
