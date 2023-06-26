@@ -22,9 +22,9 @@ export function Input({ error, isInvalid, ...rest }: InputProps) {
         isInvalid={invalid}
         _invalid={{ borderWidth: 1, borderColor: 'red.500' }}
         _focus={{
-          bgColor: 'gray.700',
           borderWidth: 1,
-          borderColor: 'blue.default'
+          borderColor: 'blue.300',
+          backgroundColor: 'gray.700'
         }}
         {...rest}
       />
