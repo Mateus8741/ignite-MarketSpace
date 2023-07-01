@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import {
   HStack,
   IStackProps,
@@ -15,13 +16,19 @@ type HeaderProps = IStackProps & {
 export function Header({ children, ...rest }: HeaderProps) {
   const { colors } = useTheme()
 
+  const navigation = useNavigation()
+
+  function handleGoBack() {
+    navigation.goBack()
+  }
+
   return (
     <HStack {...rest} w="full" justifyContent="center" alignItems="center">
       <NativeButton
+        left={0}
         variant="secondary"
         position="absolute"
-        left={0}
-        paddingX={5}
+        onPress={handleGoBack}
       >
         <ArrowLeft color={colors.gray[200]} />
       </NativeButton>

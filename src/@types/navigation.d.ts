@@ -1,13 +1,21 @@
 export declare global {
   namespace ReactNavigation {
     interface RootParamList {
-      app: {
-        screen: 'ads' | 'home' | 'signout'
+      ad: {
+        id: string
       }
+
+      ads: undefined
+      app: undefined
+      home: undefined
 
       signIn: undefined
       signUp: undefined
       signOut: undefined
+
+      create: undefined
+      update: undefined
+      preview: undefined
     }
   }
 }

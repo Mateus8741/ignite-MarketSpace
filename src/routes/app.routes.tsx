@@ -7,7 +7,12 @@ import AdsSvg from '@/assets/icons/ads.svg'
 import HomeSvg from '@/assets/icons/home.svg'
 import SignOutSvg from '@/assets/icons/getout.svg'
 
+import { Ad } from '@/screens/Ad'
+import { Ads } from '@/screens/Ads'
 import { Home } from '@/screens/Home'
+import { Create } from '@/screens/Create'
+import { Update } from '@/screens/Update'
+import { Preview } from '@/screens/Preview'
 import { SignOut } from '@/screens/SignOut'
 
 const Tab = createBottomTabNavigator()
@@ -47,7 +52,7 @@ function HomeTabs() {
       />
       <Tab.Screen
         name="ads"
-        component={Home}
+        component={Ads}
         options={{
           tabBarIcon: ({ color }) => (
             <AdsSvg
@@ -82,7 +87,10 @@ export function AppRoutes() {
       initialRouteName="app"
     >
       <Stack.Screen name="app" component={HomeTabs} />
-      <Stack.Screen name="ad" component={Home} />
+      <Stack.Screen name="ad" component={Ad} />
+      <Stack.Screen name="create" component={Create} />
+      <Stack.Screen name="update" component={Update} />
+      <Stack.Screen name="preview" component={Preview} />
     </Stack.Navigator>
   )
 }
