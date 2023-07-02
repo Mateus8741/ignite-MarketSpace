@@ -62,7 +62,7 @@ export function AuthProvider({ children }: PropsWithChildren<unknown>) {
 
       if (user && accessToken) {
         await storageUserAndTokenSave(user, accessToken)
-        userAndTokenUpdate(user, accessToken)
+        await userAndTokenUpdate(user, accessToken)
       }
     } catch (error) {
       throw error
@@ -93,7 +93,7 @@ export function AuthProvider({ children }: PropsWithChildren<unknown>) {
       const accessToken = await storageAuthTokenGet()
 
       if (accessToken && userLogged) {
-        userAndTokenUpdate(userLogged, accessToken)
+        await userAndTokenUpdate(userLogged, accessToken)
       }
     } catch (error) {
       throw error

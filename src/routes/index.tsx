@@ -21,7 +21,7 @@ export function Routes() {
 
   return (
     <NavigationContainer>
-      {!isAuthenticated ? <AppRoutes /> : <AuthRoutes />}
+      {isAuthenticated ? <AppRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   )
 }

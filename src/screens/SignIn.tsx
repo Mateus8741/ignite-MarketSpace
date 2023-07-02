@@ -1,15 +1,58 @@
+import { useContext, useState } from 'react'
+import { Alert, ScrollView } from 'react-native'
 import { Heading, Image, Text, VStack } from 'native-base'
-import { ScrollView } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 
+import { useForm, Controller } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+
 import logoImg from '@/assets/logo.png'
+
+import { AuthContext } from '@/contexts/AuthContext'
 
 import { Input } from '@/components/Form/Input'
 import { Button } from '@/components/Touchables/Button'
 
+const signInFormSchema = z.object({
+  email: z
+    .string()
+    .nonempty('O e-mail é obrigatório')
+    .email('Formato de e-mail inválido')
+    .toLowerCase(),
+  password: z.string().min(6, 'A senha deve conter no mínimo 6 caracteres')
+})
+
+type SignInFormData = z.infer<typeof signInFormSchema>
+
 export function SignIn() {
+  const [loading, setLoading] = useState(false)
   const navigation = useNavigation()
+
+  const { signIn } = useContext(AuthContext)
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<SignInFormData>({
+    resolver: zodResolver(signInFormSchema)
+  })
+
+  async function handleSignIn({ email, password }: SignInFormData) {
+    try {
+      setLoading(true)
+
+      await signIn({ email, password })
+    } catch (error) {
+      const message = 'Não foi possível entrar. Tente novamente mais tarde.'
+
+      Alert.alert('Oops!', message)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   function handleNewAccount() {
     navigation.navigate('signUp')
@@ -42,16 +85,41 @@ export function SignIn() {
             Acesse a sua conta
           </Text>
 
-          <Input
-            width="100%"
-            placeholder="E-mail"
-            keyboardType="email-address"
-            autoCapitalize="none"
+          <Controller
+            name="email"
+            control={control}
+            render={({ field: { onChange } }) => (
+              <Input
+                width="100%"
+                placeholder="E-mail"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                onChangeText={onChange}
+                error={errors.email?.message}
+              />
+            )}
           />
 
-          <Input width="100%" secureTextEntry placeholder="Senha" />
+          <Controller
+            name="password"
+            control={control}
+            render={({ field: { onChange } }) => (
+              <Input
+                width="100%"
+                secureTextEntry
+                placeholder="Senha"
+                onChangeText={onChange}
+                error={errors.password?.message}
+              />
+            )}
+          />
 
-          <Button mt={8} variant="primary" disabled>
+          <Button
+            mt={8}
+            variant="primary"
+            disabled={loading}
+            onPress={handleSubmit(handleSignIn)}
+          >
             Entrar
           </Button>
         </VStack>
